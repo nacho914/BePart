@@ -10,18 +10,21 @@ import com.example.bepart.R
 import com.example.bepart.databinding.ActivityDetailInitiativeBinding
 import com.example.bepart.presentation.viewmodel.DetailInitiativeViewModel
 import com.example.bepart.domain.model.Initiatives
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class DetailInitiativeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailInitiativeBinding
     private lateinit var viewModel: DetailInitiativeViewModel
     private lateinit var key: String
+    private var userID = Firebase.auth.currentUser!!.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailInitiativeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         key = intent.getStringExtra(INITIATIVE_KEY).orEmpty()
         callViewModel()
-        viewModel.addLiveListener(key, "Nacho")
+        viewModel.addLiveListener(key, userID)
     }
 
     private fun callViewModel() {

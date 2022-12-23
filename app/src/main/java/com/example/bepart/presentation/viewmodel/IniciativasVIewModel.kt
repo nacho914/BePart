@@ -5,22 +5,20 @@ import androidx.lifecycle.ViewModel
 import com.example.bepart.COLLECTION_NAME
 import com.example.bepart.domain.model.Initiatives
 import com.example.bepart.domain.model.Result.*
-import com.example.bepart.domain.use_case.iniciativeUseCase
-import com.example.bepart.presentation.IniciativesMappers
-import com.google.android.gms.common.api.Response
+import com.example.bepart.domain.use_case.InitiativeUseCase
+import com.example.bepart.presentation.mappers.IniciativesMappers
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 @Suppress("NAME_SHADOWING")
 class MainViewModel(
-    private val iniciativeUseCase: iniciativeUseCase
+    private val iniciativeUseCase: InitiativeUseCase
 ) : ViewModel() {
 
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
@@ -81,7 +79,6 @@ class MainViewModel(
 fun getInitiativesList(): MutableLiveData<List<Initiatives>>{
         return initiativeMutableList
     }
-
 
     fun getStatus(): MutableLiveData<Boolean> {
         return isLoading

@@ -20,7 +20,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".presentation.addIniciativa"
+            android:name=".presentation.AddInitiativeActivity"
             android:exported="false"
             android:label="@string/title_activity_add_iniciativa"
             android:theme="@style/Theme.BePart.NoActionBar">
@@ -29,7 +29,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".main.presentation.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="false">
 
             <meta-data

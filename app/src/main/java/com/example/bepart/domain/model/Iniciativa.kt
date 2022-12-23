@@ -6,6 +6,6 @@ data class Initiatives(
     val creador: String,
     val descripcion: String,
     val totalVotantes: Int,
-    val id: String = "",
+    val id: String = "1",
     val voters: List<String> = emptyList()
 )

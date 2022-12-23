@@ -1,4 +1,4 @@
-package com.example.bepart.main.presentation
+package com.example.bepart.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,13 +8,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bepart.INITIATIVE_KEY
 import com.example.bepart.databinding.ActivityMainBinding
-import com.example.bepart.presentation.DetailInitiativeActivity
 import com.example.bepart.presentation.viewmodel.MainViewModel
 import com.example.bepart.domain.model.Initiatives
-import com.example.bepart.domain.use_case.iniciativeUseCase
+import com.example.bepart.domain.use_case.InitiativeUseCase
 import com.example.bepart.getViewModel
-import com.example.bepart.main.db.MainFirebaseDataSource
-import com.example.bepart.presentation.addIniciativa
+import com.example.bepart.data.repository.MainFirebaseDataSourceImpl
+import com.example.bepart.presentation.adapters.InitiativeAdapter
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), MainActivityActions {
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity(), MainActivityActions {
 
     private val viewModel : MainViewModel by lazy {
         getViewModel {
-            MainViewModel(iniciativeUseCase(MainFirebaseDataSource()))
+            MainViewModel(InitiativeUseCase(MainFirebaseDataSourceImpl()))
         }
     }
 
@@ -37,8 +38,13 @@ class MainActivity : AppCompatActivity(), MainActivityActions {
 
         binding.addInitiativeBtn.setOnClickListener {
             startActivity(
-                Intent(this, addIniciativa::class.java)
+                Intent(this, AddInitiativeActivity::class.java)
             )
+        }
+
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.getInitiativesList()
+            binding.refreshLayout.isRefreshing = false
         }
     }
 
@@ -83,7 +89,9 @@ class MainActivity : AppCompatActivity(), MainActivityActions {
 
     override fun openInitiativeDetailActivity(key: String) {
         val intent = Intent(this, DetailInitiativeActivity::class.java)
+        val id = Firebase.auth.currentUser.toString()
         intent.putExtra(INITIATIVE_KEY, key)
+        //intent.putExtra(INITIATIVE_KEY, id)
         startActivity(intent)
     }
 }

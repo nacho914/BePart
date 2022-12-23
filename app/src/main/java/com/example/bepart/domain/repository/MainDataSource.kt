@@ -1,4 +1,4 @@
-package com.example.bepart.main.repository
+package com.example.bepart.domain.repository
 
 import com.example.bepart.domain.model.Initiatives
 import com.example.bepart.domain.model.Result

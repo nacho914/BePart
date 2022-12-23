@@ -1,10 +1,12 @@
-package com.example.bepart.main.presentation
+package com.example.bepart.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.bepart.domain.model.Initiatives
+import com.example.bepart.presentation.viewHolders.IniciativasViewHolder
+import com.example.bepart.presentation.MainActivityActions
 
 class InitiativeAdapter(
     var items: MutableList<Initiatives>,

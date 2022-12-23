@@ -1,4 +1,4 @@
-package com.example.bepart.main.presentation
+package com.example.bepart.presentation
 
 interface MainActivityActions {
     fun openInitiativeDetailActivity(key: String)

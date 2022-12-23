@@ -1,8 +1,9 @@
-package com.example.bepart.main.presentation
+package com.example.bepart.presentation.viewHolders
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bepart.databinding.ItemIniciativasBinding
 import com.example.bepart.domain.model.Initiatives
+import com.example.bepart.presentation.MainActivityActions
 
 class IniciativasViewHolder(
     private val binding: ItemIniciativasBinding,

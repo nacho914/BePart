@@ -1,4 +1,4 @@
-package com.example.bepart.presentation
+package com.example.bepart.presentation.mappers
 
 import com.example.bepart.INITIATIVES_CATEGORY
 import com.example.bepart.INITIATIVES_CREATOR

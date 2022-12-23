@@ -5,17 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bepart.domain.model.Initiatives
 import com.example.bepart.domain.model.Result
-import com.example.bepart.domain.use_case.iniciativeUseCase
-import com.example.bepart.presentation.addIniciativa
+import com.example.bepart.domain.use_case.InitiativeUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class AddIniciativaViewModel(
-    private val iniciativeUseCase: iniciativeUseCase
+    private val iniciativeUseCase: InitiativeUseCase
 ) : ViewModel() {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     val complete = MutableLiveData<Boolean>()

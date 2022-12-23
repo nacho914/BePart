@@ -1,6 +1,7 @@
-package com.example.bepart.main.repository
+package com.example.bepart.domain.repository
 
 import com.example.bepart.domain.model.Initiatives
+import com.example.bepart.domain.repository.MainDataSource
 
 class MainRepository(private val dataSource: MainDataSource) {
     suspend fun getAllInitiatives() = dataSource.getAllInitiatives()

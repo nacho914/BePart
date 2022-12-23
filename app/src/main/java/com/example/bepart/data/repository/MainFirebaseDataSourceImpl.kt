@@ -1,12 +1,12 @@
-package com.example.bepart.main.db
+package com.example.bepart.data.repository
 
 import android.util.Log
 import com.example.bepart.COLLECTION_NAME
 import com.example.bepart.domain.model.Initiatives
 import com.example.bepart.domain.model.Result
 import com.example.bepart.domain.model.Result.Success
-import com.example.bepart.main.repository.MainDataSource
-import com.example.bepart.presentation.IniciativesMappers
+import com.example.bepart.domain.repository.MainDataSource
+import com.example.bepart.presentation.mappers.IniciativesMappers
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class MainFirebaseDataSource : MainDataSource {
+class MainFirebaseDataSourceImpl : MainDataSource {
 
 
     override suspend fun addIniciativatoFireStore(iniciativa: Initiatives): Flow<Result<String, Error>> {

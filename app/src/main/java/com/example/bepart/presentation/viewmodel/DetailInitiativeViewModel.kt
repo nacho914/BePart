@@ -1,12 +1,13 @@
 package com.example.bepart.presentation.viewmodel
 
+import android.provider.Settings
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bepart.COLLECTION_NAME
-import com.example.bepart.main.db.MainFirebaseDataSource
+import com.example.bepart.data.repository.MainFirebaseDataSourceImpl
 import com.example.bepart.domain.model.Initiatives
-import com.example.bepart.main.repository.MainRepository
-import com.example.bepart.presentation.IniciativesMappers
+import com.example.bepart.domain.repository.MainRepository
+import com.example.bepart.presentation.mappers.IniciativesMappers
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -18,8 +19,10 @@ class DetailInitiativeViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     private val initiativeMutable = MutableLiveData<Initiatives>()
     private val isLoading = MutableLiveData<Boolean>()
+    private val name = MutableLiveData<String>()
     private val voted = MutableLiveData<Boolean>()
-    private val mainRepository = MainRepository(MainFirebaseDataSource())
+    private val mainRepository = MainRepository(MainFirebaseDataSourceImpl())
+
 
     fun addLiveListener(key: String, userId: String) {
         val db = Firebase.firestore
@@ -63,6 +66,14 @@ class DetailInitiativeViewModel : ViewModel() {
         coroutineScope.launch {
             mainRepository.removeVote(initiativeKey, votersName)
             isLoading.postValue(false)
+        }
+    }
+
+    fun vote(initiatives: Initiatives, id:String){
+        if (initiatives.voters.contains(id)){
+            addVote(id, name.value.toString())
+        } else {
+            removeVote(id, name.value.toString())
         }
     }
 
