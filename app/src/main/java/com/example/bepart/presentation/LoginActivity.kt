@@ -1,4 +1,4 @@
-package com.example.bepart
+package com.example.bepart.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun goToRegister(view: View){
-        val intent= Intent(this,RegistrationActivity::class.java)
+        val intent= Intent(this, RegistrationActivity::class.java)
         startActivity(intent)
     }
 }

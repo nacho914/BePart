@@ -1,12 +1,12 @@
-package com.example.bepart.detailInitiative
+package com.example.bepart.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bepart.COLLECTION_NAME
-import com.example.bepart.Utils
 import com.example.bepart.main.db.MainFirebaseDataSource
-import com.example.bepart.main.model.Initiatives
+import com.example.bepart.domain.model.Initiatives
 import com.example.bepart.main.repository.MainRepository
+import com.example.bepart.presentation.IniciativesMappers
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -31,7 +31,7 @@ class DetailInitiativeViewModel : ViewModel() {
                     return@addSnapshotListener
                 }
                 value?.let {
-                    val initiative = Utils.fromLiveDataToInitiative(it)
+                    val initiative = IniciativesMappers.fromLiveDataToInitiative(it)
                     voted.postValue(voted(initiative, userId))
                     isLoading.postValue(false)
                     initiativeMutable.postValue(

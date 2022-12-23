@@ -2,7 +2,7 @@ package com.example.bepart.main.presentation
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bepart.databinding.ItemIniciativasBinding
-import com.example.bepart.main.model.Initiatives
+import com.example.bepart.domain.model.Initiatives
 
 class IniciativasViewHolder(
     private val binding: ItemIniciativasBinding,

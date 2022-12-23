@@ -1,4 +1,4 @@
-package com.example.bepart
+package com.example.bepart.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

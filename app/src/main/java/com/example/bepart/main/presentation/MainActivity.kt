@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bepart.INITIATIVE_KEY
 import com.example.bepart.databinding.ActivityMainBinding
-import com.example.bepart.detailInitiative.DetailInitiativeActivity
-import com.example.bepart.main.MainViewModel
-import com.example.bepart.main.model.Initiatives
+import com.example.bepart.presentation.DetailInitiativeActivity
+import com.example.bepart.presentation.viewmodel.MainViewModel
+import com.example.bepart.domain.model.Initiatives
+import com.example.bepart.domain.use_case.iniciativeUseCase
+import com.example.bepart.getViewModel
+import com.example.bepart.main.db.MainFirebaseDataSource
+import com.example.bepart.presentation.addIniciativa
 
 class MainActivity : AppCompatActivity(), MainActivityActions {
 
@@ -19,12 +22,24 @@ class MainActivity : AppCompatActivity(), MainActivityActions {
     private lateinit var initiativeAdapter: InitiativeAdapter
     private val initiativeList = mutableListOf<Initiatives>()
 
+    private val viewModel : MainViewModel by lazy {
+        getViewModel {
+            MainViewModel(iniciativeUseCase(MainFirebaseDataSource()))
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.loadingWheel.visibility = View.VISIBLE
         initRecyclerView(initiativeList)
+
+        binding.addInitiativeBtn.setOnClickListener {
+            startActivity(
+                Intent(this, addIniciativa::class.java)
+            )
+        }
     }
 
     override fun onStart() {
@@ -33,7 +48,6 @@ class MainActivity : AppCompatActivity(), MainActivityActions {
     }
 
     private fun callVieModel() {
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         val observer = Observer<List<Initiatives>> {
             initiativeList.clear()
             initiativeList.addAll(it as ArrayList<Initiatives>)
