@@ -35,36 +35,6 @@
             app:layout_constraintTop_toBottomOf="@id/nameText"
             android:textAlignment="center"/>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/addSupportBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_add_circle_36"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="80dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/categoryText"/>
-
-        <ImageView
-            android:id="@+id/thumbUpImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_thumb_up_24"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="80dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/categoryText"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/votesText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            tools:text="1900"
-            android:textStyle="bold"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toStartOf="@id/thumbUpImage"
-            app:layout_constraintTop_toBottomOf="@id/categoryText"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/descriptionText"
@@ -77,8 +47,35 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addSupportBtn"
+            app:layout_constraintTop_toBottomOf="@id/categoryText"
             />
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/addSupportBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_thumb_black_56"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descriptionText"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/votesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            tools:text="1900"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@id/addSupportBtn"
+            app:layout_constraintTop_toBottomOf="@id/descriptionText"/>
+
+
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/creatorName"
@@ -87,7 +84,7 @@
             tools:text="Pancho villa"
             android:textSize="24sp"
             android:textStyle="italic"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/descriptionText" />

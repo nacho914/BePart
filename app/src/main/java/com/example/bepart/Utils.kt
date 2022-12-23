@@ -7,8 +7,10 @@ class Utils {
     companion object {
         fun fromLiveDataToInitiative(doc: DocumentSnapshot): Initiatives {
             var votersCount = 0
+            var list = listOf<String>()
             if (doc[INITIATIVES_VOTERS] != null) {
                 votersCount = (doc[INITIATIVES_VOTERS] as ArrayList<*>).size
+                list = doc[INITIATIVES_VOTERS] as List<String>
             }
 
             return Initiatives(
@@ -18,7 +20,7 @@ class Utils {
                 creador = doc[INITIATIVES_CREATOR].toString(),
                 totalVotantes = votersCount,
                 id = doc.id,
-                voters = doc[INITIATIVES_VOTERS] as List<String>
+                voters = list
             )
         }
     }
