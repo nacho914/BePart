@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.bepart.main.model.Initiatives
+import com.example.bepart.domain.model.Initiatives
 
 class InitiativeAdapter(
     var items: MutableList<Initiatives>,

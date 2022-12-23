@@ -1,25 +1,30 @@
-package com.example.bepart.main
+package com.example.bepart.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bepart.COLLECTION_NAME
-import com.example.bepart.Utils
-import com.example.bepart.main.db.MainFirebaseDataSource
-import com.example.bepart.main.model.Initiatives
-import com.example.bepart.main.repository.MainRepository
+import com.example.bepart.domain.model.Initiatives
+import com.example.bepart.domain.model.Result.*
+import com.example.bepart.domain.use_case.iniciativeUseCase
+import com.example.bepart.presentation.IniciativesMappers
+import com.google.android.gms.common.api.Response
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 @Suppress("NAME_SHADOWING")
-class MainViewModel : ViewModel() {
+class MainViewModel(
+    private val iniciativeUseCase: iniciativeUseCase
+) : ViewModel() {
 
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     private val initiativeMutableList = MutableLiveData<List<Initiatives>>()
-    private val mainRepository = MainRepository(MainFirebaseDataSource())
     private val isLoading = MutableLiveData<Boolean>()
 
     init {
@@ -28,12 +33,22 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getInitiatives() {
-        isLoading.postValue(true)
         coroutineScope.launch {
-            initiativeMutableList.postValue(
-                mainRepository.getAllInitiatives()
-            )
-            isLoading.postValue(false)
+            iniciativeUseCase.getAllIniciatives()
+                .onStart { isLoading.postValue(false) }
+                .onCompletion { isLoading.postValue(false) }
+                .collect{ result ->
+                    when (result){
+                        is Success -> {
+                            val data = result.value
+                            initiativeMutableList.postValue(data)
+                            isLoading.postValue(false)
+                        }
+                        is Failure -> {
+                            val error = result.reason
+                        }
+                    }
+                }
         }
     }
 
@@ -54,7 +69,7 @@ class MainViewModel : ViewModel() {
         val initiativesList = ArrayList<Initiatives>()
         for (doc in query) {
             initiativesList.add(
-                Utils.fromLiveDataToInitiative(doc)
+                IniciativesMappers.fromLiveDataToInitiative(doc)
             )
         }
         initiativesList.sortByDescending { it.totalVotantes }
@@ -62,9 +77,11 @@ class MainViewModel : ViewModel() {
         isLoading.postValue(false)
     }
 
-    fun getInitiativesList(): MutableLiveData<List<Initiatives>> {
+
+fun getInitiativesList(): MutableLiveData<List<Initiatives>>{
         return initiativeMutableList
     }
+
 
     fun getStatus(): MutableLiveData<Boolean> {
         return isLoading

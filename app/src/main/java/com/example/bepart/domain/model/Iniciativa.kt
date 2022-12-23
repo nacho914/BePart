@@ -1,4 +1,4 @@
-package com.example.bepart.main.model
+package com.example.bepart.domain.model
 
 data class Initiatives(
     val nombre: String,
@@ -7,5 +7,5 @@ data class Initiatives(
     val descripcion: String,
     val totalVotantes: Int,
     val id: String = "",
-    val voters: List<String>
+    val voters: List<String> = emptyList()
 )

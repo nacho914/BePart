@@ -1,4 +1,4 @@
-package com.example.bepart.detailInitiative
+package com.example.bepart.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bepart.INITIATIVE_KEY
 import com.example.bepart.R
 import com.example.bepart.databinding.ActivityDetailInitiativeBinding
-import com.example.bepart.main.model.Initiatives
+import com.example.bepart.presentation.viewmodel.DetailInitiativeViewModel
+import com.example.bepart.domain.model.Initiatives
 
 class DetailInitiativeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailInitiativeBinding
