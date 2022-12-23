@@ -5,6 +5,7 @@ import com.example.bepart.COLLECTION_NAME
 import com.example.bepart.Utils
 import com.example.bepart.main.model.Initiatives
 import com.example.bepart.main.repository.MainDataSource
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -30,5 +31,25 @@ class MainFirebaseDataSource : MainDataSource {
             Log.d("TAG", "get failed with ", exception)
         }.await()
         return initiativeList
+    }
+
+    override suspend fun addVote(
+        initiativeKey: String,
+        votersName: String
+    ) {
+        val db = Firebase.firestore
+        var data: MutableMap<String, ArrayList<String>> = hashMapOf()
+        val docRef = db.collection(COLLECTION_NAME)
+            .document(initiativeKey).update("votantes", FieldValue.arrayUnion(votersName))
+    }
+
+    override suspend fun deleteVote(
+        initiativeKey: String,
+        votersName: String
+    ) {
+        val db = Firebase.firestore
+        var data: MutableMap<String, ArrayList<String>> = hashMapOf()
+        val docRef = db.collection(COLLECTION_NAME)
+            .document(initiativeKey).update("votantes", FieldValue.arrayRemove(votersName))
     }
 }

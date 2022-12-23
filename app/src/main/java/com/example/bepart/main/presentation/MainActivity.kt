@@ -1,16 +1,19 @@
 package com.example.bepart.main.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bepart.INITIATIVE_KEY
 import com.example.bepart.databinding.ActivityMainBinding
+import com.example.bepart.detailInitiative.DetailInitiativeActivity
 import com.example.bepart.main.MainViewModel
 import com.example.bepart.main.model.Initiatives
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainActivityActions {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var initiativeAdapter: InitiativeAdapter
@@ -31,7 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun callVieModel() {
         val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        // viewModel.getInitiatives()
         val observer = Observer<List<Initiatives>> {
             initiativeList.clear()
             initiativeList.addAll(it as ArrayList<Initiatives>)
@@ -53,12 +55,21 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerView(
         initiativeList: MutableList<Initiatives>
     ) {
-        initiativeAdapter = InitiativeAdapter(initiativeList)
+        initiativeAdapter = InitiativeAdapter(
+            initiativeList,
+            this
+        )
         binding.initiativeRecycler.layoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL,
             false
         )
         binding.initiativeRecycler.adapter = initiativeAdapter
+    }
+
+    override fun openInitiativeDetailActivity(key: String) {
+        val intent = Intent(this, DetailInitiativeActivity::class.java)
+        intent.putExtra(INITIATIVE_KEY, key)
+        startActivity(intent)
     }
 }

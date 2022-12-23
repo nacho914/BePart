@@ -5,15 +5,23 @@ import com.example.bepart.databinding.ItemIniciativasBinding
 import com.example.bepart.main.model.Initiatives
 
 class IniciativasViewHolder(
-    private val binding: ItemIniciativasBinding
+    private val binding: ItemIniciativasBinding,
+    private var actions: MainActivityActions
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
-        iniciativas: Initiatives
+        initiatives: Initiatives
     ) {
-        binding.nameText.text = iniciativas.nombre
-        binding.categoryText.text = iniciativas.categoria
-        binding.descriptionText.text = iniciativas.descripcion
-        binding.votesText.text = iniciativas.totalVotantes.toString()
+        binding.nameText.text = initiatives.nombre
+        binding.categoryText.text = initiatives.categoria
+        binding.descriptionText.text = initiatives.descripcion
+        binding.votesText.text = initiatives.totalVotantes.toString()
+        setCardViewListener(initiatives.id)
+    }
+
+    private fun setCardViewListener(key: String) {
+        binding.itemCardView.setOnClickListener {
+            actions.openInitiativeDetailActivity(key)
+        }
     }
 }

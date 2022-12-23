@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.bepart.main.model.Initiatives
 
 class InitiativeAdapter(
-    var items: MutableList<Initiatives>
+    var items: MutableList<Initiatives>,
+    var actions: MainActivityActions
 ) : ListAdapter<Initiatives, IniciativasViewHolder>(TaskDiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IniciativasViewHolder {
@@ -16,7 +17,7 @@ class InitiativeAdapter(
             parent,
             false
         )
-        return IniciativasViewHolder(binding)
+        return IniciativasViewHolder(binding, actions)
     }
 
     override fun onBindViewHolder(holder: IniciativasViewHolder, position: Int) {

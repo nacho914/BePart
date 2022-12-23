@@ -16,7 +16,9 @@ class Utils {
                 descripcion = doc[INITIATIVES_DESCRIPTION].toString(),
                 categoria = doc[INITIATIVES_CATEGORY].toString(),
                 creador = doc[INITIATIVES_CREATOR].toString(),
-                totalVotantes = votersCount
+                totalVotantes = votersCount,
+                id = doc.id,
+                voters = doc[INITIATIVES_VOTERS] as List<String>
             )
         }
     }
