@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BePart</string>
+    <string name="creador">Creador:</string>
+    <string name="categoria">Categoria:</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="fire">fire</string>
 </resources>

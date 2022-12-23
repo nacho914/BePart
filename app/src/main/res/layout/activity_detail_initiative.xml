@@ -18,22 +18,94 @@
             android:layout_margin="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="center"/>
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/firstLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/teal_200"
+            app:layout_constraintTop_toBottomOf="@id/nameText"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/creatorLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Creador:"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firstLine"
+            android:textAlignment="center"
+            android:text="@string/creador"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/creatorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Pancho villa"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/creatorLabel"
+            app:layout_constraintTop_toBottomOf="@id/firstLine" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/categoryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Categoria:"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@id/creatorName"
+            app:layout_constraintTop_toBottomOf="@id/firstLine"
+            android:text="@string/categoria"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/categoryText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Actividades"
-            android:textSize="24sp"
+            tools:text="Caridad"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toEndOf="@id/categoryLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firstLine" />
+
+        <View
+            android:id="@+id/secondLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/teal_200"
+            app:layout_constraintTop_toBottomOf="@id/categoryText"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/descriptionLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Descripcion:"
+            android:textSize="16sp"
             android:textStyle="italic"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nameText"
-            android:textAlignment="center"/>
+            app:layout_constraintTop_toBottomOf="@id/secondLine"
+            android:textAlignment="center"
+            android:text="@string/descripcion"/>
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -41,25 +113,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-            android:textStyle="italic"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/categoryText"
+            app:layout_constraintTop_toBottomOf="@id/descriptionLabel"
             />
+
+        <View
+            android:id="@+id/thirdLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/teal_200"
+            app:layout_constraintTop_toBottomOf="@id/descriptionText"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/addSupportBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_thumb_black_56"
             android:layout_marginTop="24dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionText"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/thirdLine"/>
+
+        <ImageView
+            android:id="@+id/fireImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fire_56"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addSupportBtn"
+            android:contentDescription="@string/fire"
+            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/votesText"
@@ -69,25 +164,11 @@
             android:layout_marginStart="16dp"
             tools:text="1900"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="8dp"
             android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@id/addSupportBtn"
-            app:layout_constraintTop_toBottomOf="@id/descriptionText"/>
-
-
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/creatorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Pancho villa"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+            app:layout_constraintTop_toBottomOf="@id/fireImg"/>
 
         <ProgressBar
             android:id="@+id/loading_wheel"
