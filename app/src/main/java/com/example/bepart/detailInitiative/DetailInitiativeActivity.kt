@@ -53,13 +53,13 @@ class DetailInitiativeActivity : AppCompatActivity() {
         Observer<Boolean> {
             when (it) {
                 true -> {
-                    binding.addSupportBtn.setImageResource(R.drawable.ic_baseline_check_24)
+                    binding.addSupportBtn.setImageResource(R.drawable.ic_thumb_black_56)
                     binding.addSupportBtn.setOnClickListener {
                         viewModel.removeVote(key, "Nacho")
                     }
                 }
                 false -> {
-                    binding.addSupportBtn.setImageResource(R.drawable.ic_add_circle_36)
+                    binding.addSupportBtn.setImageResource(R.drawable.ic_thumb_white_56)
                     binding.addSupportBtn.setOnClickListener {
                         viewModel.addVote(key, "Nacho")
                     }
